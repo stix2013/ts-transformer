@@ -11,3 +11,6 @@ wheels/
 
 # Pytest Coverage
 .coverage
+
+# Gemini
+.gemini
