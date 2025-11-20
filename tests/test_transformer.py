@@ -3,7 +3,7 @@ import pytest
 import tensorflow as tf
 import numpy as np
 
-from src.tf_transformer.transformer import (
+from tf_transformer.transformer import (
     positional_encoding,
     MultiHeadAttention,
     PositionwiseFeedforward,
