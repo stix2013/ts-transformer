@@ -1,0 +1,5 @@
+{
+  "python.analysis.supportAllPythonDocuments": true,
+  "python.terminal.activateEnvInCurrentTerminal": true
+
+}
