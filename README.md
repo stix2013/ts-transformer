@@ -91,9 +91,69 @@ The Encoder is made up of a stack of `N` identical layers. Each layer has two su
 1.  A multi-head self-attention mechanism.
 2.  A position-wise, fully connected feed-forward network.
 
+Each of these sub-layers has a residual connection around it, followed by a layer normalization. The output of each sub-layer is `LayerNorm(x + Sublayer(x))`, where `Sublayer(x)` is the function implemented by the sub-layer itself.
+
+The following diagram shows the architecture of the Encoder:
+```
++--------------------------------------------------+
+|                                                  |
+|  +--------------------------------------------+  |
+|  |                                            |  |
+|  |           Multi-Head Attention             |  |
+|  |                                            |  |
+|  +--------------------------------------------+  |
+|  |                                            |  |
+|  |            Add & Norm                      |  |
+|  |                                            |  |
+|  +--------------------------------------------+  |
+|  |                                            |  |
+|  |         Feed Forward Network               |  |
+|  |                                            |  |
+|  +--------------------------------------------+  |
+|  |                                            |  |
+|  |            Add & Norm                      |  |
+|  |                                            |  |
+|  +--------------------------------------------+  |
+|                                                  |
++--------------------------------------------------+
+```
+
 ### Decoder
 
 The Decoder is also composed of a stack of `N` identical layers. In addition to the two sub-layers in each encoder layer, the decoder inserts a third sub-layer, which performs multi-head attention over the output of the encoder stack.
+
+The following diagram shows the architecture of the Decoder:
+```
++--------------------------------------------------+
+|                                                  |
+|  +--------------------------------------------+  |
+|  |                                            |  |
+|  |        Masked Multi-Head Attention         |  |
+|  |                                            |  |
+|  +--------------------------------------------+  |
+|  |                                            |  |
+|  |            Add & Norm                      |  |
+|  |                                            |  |
+|  +--------------------------------------------+  |
+|  |                                            |  |
+|  |           Multi-Head Attention             |  |
+|  |                                            |  |
+|  +--------------------------------------------+  |
+|  |                                            |  |
+|  |            Add & Norm                      |  |
+|  |                                            |  |
+|  +--------------------------------------------+  |
+|  |                                            |  |
+|  |         Feed Forward Network               |  |
+|  |                                            |  |
+|  +--------------------------------------------+  |
+|  |                                            |  |
+|  |            Add & Norm                      |  |
+|  |                                            |  |
+|  +--------------------------------------------+  |
+|                                                  |
++--------------------------------------------------+
+```
 
 ---
 
