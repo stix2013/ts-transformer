@@ -6,22 +6,24 @@ A TensorFlow implementation of the Transformer model, based on the paper "Attent
 
 This project provides a clear and concise implementation of the Transformer architecture. It includes all the core components:
 
-*   **Multi-Head Attention:** The core attention mechanism.
-*   **Position-wise Feed-Forward Networks:** The fully connected layers in the model.
-*   **Positional Encoding:** To give the model information about the relative or absolute position of the tokens in the sequence.
-*   **Encoder and Decoder:** The two main parts of the Transformer architecture.
+* **Multi-Head Attention:** The core attention mechanism.
+* **Position-wise Feed-Forward Networks:** The fully connected layers in the model.
+* **Positional Encoding:** To give the model information about the relative or absolute position of the tokens in the sequence.
+* **Encoder and Decoder:** The two main parts of the Transformer architecture.
 
 The implementation is structured into modular components, making it easy to understand and extend.
 
 ## Installation
 
-1.  Clone the repository:
+1. Clone the repository:
+
     ```bash
     git clone https://github.com/s-h-moeladi/tf-transformer.git
     cd tf-transformer
     ```
 
-2.  Install the dependencies:
+2. Install the dependencies:
+
     ```bash
     pip install .
     ```
@@ -73,10 +75,13 @@ print(output.shape)
 ```
 
 You can run this example with:
+
 ```bash
 python -m src.tf_transformer.main
 ```
+
 Or you can use the installed script:
+
 ```bash
 tf-transformer
 ```
@@ -88,72 +93,23 @@ The model follows the original Transformer architecture, consisting of an Encode
 ### Encoder
 
 The Encoder is made up of a stack of `N` identical layers. Each layer has two sub-layers:
-1.  A multi-head self-attention mechanism.
-2.  A position-wise, fully connected feed-forward network.
+
+1. A multi-head self-attention mechanism.
+2. A position-wise, fully connected feed-forward network.
 
 Each of these sub-layers has a residual connection around it, followed by a layer normalization. The output of each sub-layer is `LayerNorm(x + Sublayer(x))`, where `Sublayer(x)` is the function implemented by the sub-layer itself.
 
 The following diagram shows the architecture of the Encoder:
-```
-+--------------------------------------------------+
-|                                                  |
-|  +--------------------------------------------+  |
-|  |                                            |  |
-|  |           Multi-Head Attention             |  |
-|  |                                            |  |
-|  +--------------------------------------------+  |
-|  |                                            |  |
-|  |            Add & Norm                      |  |
-|  |                                            |  |
-|  +--------------------------------------------+  |
-|  |                                            |  |
-|  |         Feed Forward Network               |  |
-|  |                                            |  |
-|  +--------------------------------------------+  |
-|  |                                            |  |
-|  |            Add & Norm                      |  |
-|  |                                            |  |
-|  +--------------------------------------------+  |
-|                                                  |
-+--------------------------------------------------+
-```
+
+![Encoder Architecture](./assets/encoder_diagram.svg)
 
 ### Decoder
 
 The Decoder is also composed of a stack of `N` identical layers. In addition to the two sub-layers in each encoder layer, the decoder inserts a third sub-layer, which performs multi-head attention over the output of the encoder stack.
 
 The following diagram shows the architecture of the Decoder:
-```
-+--------------------------------------------------+
-|                                                  |
-|  +--------------------------------------------+  |
-|  |                                            |  |
-|  |        Masked Multi-Head Attention         |  |
-|  |                                            |  |
-|  +--------------------------------------------+  |
-|  |                                            |  |
-|  |            Add & Norm                      |  |
-|  |                                            |  |
-|  +--------------------------------------------+  |
-|  |                                            |  |
-|  |           Multi-Head Attention             |  |
-|  |                                            |  |
-|  +--------------------------------------------+  |
-|  |                                            |  |
-|  |            Add & Norm                      |  |
-|  |                                            |  |
-|  +--------------------------------------------+  |
-|  |                                            |  |
-|  |         Feed Forward Network               |  |
-|  |                                            |  |
-|  +--------------------------------------------+  |
-|  |                                            |  |
-|  |            Add & Norm                      |  |
-|  |                                            |  |
-|  +--------------------------------------------+  |
-|                                                  |
-+--------------------------------------------------+
-```
+
+![Decoder Architecture](./assets/decoder_diagram.svg)
 
 ---
 
