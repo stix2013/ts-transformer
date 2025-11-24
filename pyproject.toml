@@ -1,12 +1,12 @@
 [project]
 name = "tf-transformer"
-version = "0.1.1"
+version = "0.1.2"
 description = "Add your description here"
 readme = "README.md"
 authors = [
     { name = "Stevan H. Moeladi", email = "stevan.moeladi@gmail.com" }
 ]
-requires-python = ">=3.13.9"
+requires-python = ">=3.13"
 dependencies = [
     "numpy>=2.3.5",
     "tensorflow>=2.20.0",

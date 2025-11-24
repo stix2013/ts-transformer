@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2] - 2025-11-24
+
+### Refactored
+
+- Refactored code to use relative imports in `src/tf_transformer`.
+- Synchronized `tests/test_transformer.py` with the refactored code structure.
+
 ## [0.1.1] - 2025-11-24
 
 ### Added
